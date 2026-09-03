@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Federal Signal
 
-## Getting Started
+Federal Signal is an interview-ready venture-sourcing memo built from public federal R&D data. It screens 1,530 award records, investigates ten companies, and ranks five private, product-led startups for government validation, Microsoft relevance, venture-stage fit, technical defensibility, and founder-market fit.
 
-First, run the development server:
+## Shortlist
+
+| Rank | Company | Score |
+| --- | --- | ---: |
+| 1 | AiRANACULUS | 92 |
+| 2 | Albedo | 90 |
+| 3 | Adena Power | 88 |
+| 4 | Solideon | 87 |
+| 5 | AirMettle | 84 |
+
+The page includes fixed-rank filtering, expandable evidence dossiers, a comparison table, explicit alternates and screen-outs, methodology, and a claim-level source ledger.
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Verify
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+## Research notes
 
-To learn more about Next.js, take a look at the following resources:
+- Award counts and dollars are anchored to SBIR.gov portfolio pages.
+- Private financing is labeled as reported and kept distinct from verified federal dollars.
+- Microsoft relevance is an analytical adjacency, not a claimed commercial relationship.
+- Evidence is current to September 2, 2026 and should be refreshed before investment use.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built with Next.js, React, TypeScript, and CSS Modules. Designed for deployment on Vercel.
