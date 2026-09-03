@@ -17,6 +17,7 @@ export type ScoreBreakdown = {
 export type Candidate = {
   rank: number;
   name: string;
+  website: string;
   aliases: string[];
   foundedYear: number;
   age: number;
@@ -70,6 +71,7 @@ export const candidates: Candidate[] = [
   {
     rank: 1,
     name: "AiRANACULUS",
+    website: "https://airanaculus.com/",
     aliases: ["A10 Systems Inc."],
     foundedYear: 2019,
     age: 7,
@@ -123,6 +125,7 @@ export const candidates: Candidate[] = [
   {
     rank: 2,
     name: "Albedo",
+    website: "https://albedo.com/",
     aliases: ["Albedo Space Corp."],
     foundedYear: 2020,
     age: 6,
@@ -177,6 +180,7 @@ export const candidates: Candidate[] = [
   {
     rank: 3,
     name: "Adena Power",
+    website: "https://adenapower.com/",
     aliases: [],
     foundedYear: 2022,
     age: 4,
@@ -231,6 +235,7 @@ export const candidates: Candidate[] = [
   {
     rank: 4,
     name: "Solideon",
+    website: "https://solideon.com/",
     aliases: ["Additive Space Technologies"],
     foundedYear: 2021,
     age: 5,
@@ -284,6 +289,7 @@ export const candidates: Candidate[] = [
   {
     rank: 5,
     name: "AirMettle",
+    website: "https://www.airmettle.com/",
     aliases: [],
     foundedYear: 2018,
     age: 8,

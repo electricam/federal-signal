@@ -36,7 +36,7 @@
 .badges .exceptionBadge{border-color:#d8a14a;color:#8b5910;background:#fff6e6}.scoreLockup{min-width:102px;display:flex;align-items:baseline;justify-content:flex-end;color:var(--cobalt)}
 .scoreLockup strong{font-size:54px;line-height:.9;letter-spacing:-.08em}.scoreLockup span{margin-left:7px;color:var(--muted);font:600 10px/1 var(--font-geist-mono),monospace}
 .cardIntro{display:grid;grid-template-columns:minmax(240px,.85fr) minmax(320px,1.15fr);gap:48px;align-items:end;padding-block:44px 38px}
-.cardIntro h3{margin-top:8px;font-size:clamp(38px,4.6vw,64px);font-weight:590;line-height:.95;letter-spacing:-.06em}.alias{margin-top:12px;text-transform:none;letter-spacing:0}
+.cardIntro h3{margin-top:8px;font-size:clamp(38px,4.6vw,64px);font-weight:590;line-height:.95;letter-spacing:-.06em}.cardIntro h3 a{display:inline-flex;align-items:flex-start;gap:.14em;text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:2px;text-underline-offset:.11em;transition:color 150ms ease,text-decoration-color 150ms ease}.cardIntro h3 a:hover{color:var(--cobalt);text-decoration-color:var(--cobalt)}.companyLinkIcon{margin-top:.08em;color:var(--cobalt);font-size:.34em;line-height:1;letter-spacing:0}.alias{margin-top:12px;text-transform:none;letter-spacing:0}
 .thesis{color:var(--ink-muted);font-size:clamp(18px,2vw,23px);line-height:1.4;letter-spacing:-.025em}
 .signalGrid{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--rule)}
 .signalGrid>div{min-width:0;padding:22px 16px 22px 0;border-right:1px solid var(--rule)}.signalGrid>div:not(:first-child){padding-left:22px}.signalGrid>div:last-child{border-right:0}

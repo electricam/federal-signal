@@ -54,7 +54,17 @@ function CandidateCard({ candidate }: { candidate: Candidate }) {
             <p className={styles.companyMeta}>
               Founded {candidate.foundedYear} · {candidate.headquarters}
             </p>
-            <h3 id={`candidate-${candidate.rank}`}>{candidate.name}</h3>
+            <h3 id={`candidate-${candidate.rank}`}>
+              <a
+                href={candidate.website}
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label={`${candidate.name} official website (opens in a new tab)`}
+              >
+                {candidate.name}
+                <span className={styles.companyLinkIcon} aria-hidden="true">↗</span>
+              </a>
+            </h3>
             {candidate.aliases.length > 0 && (
               <p className={styles.alias}>Also known as {candidate.aliases.join(", ")}</p>
             )}
