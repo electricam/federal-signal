@@ -6,9 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "npm run test:signals",
+    "test:signals": "tsx --test scripts/weekly-signals/*.test.ts",
+    "signals:refresh": "tsx scripts/weekly-signals/run.ts",
+    "signals:validate": "tsx scripts/weekly-signals/validate.ts"
+  },
+  "engines": {
+    "node": ">=24"
   },
   "dependencies": {
+    "cheerio": "^1.2.0",
+    "csv-parse": "^7.0.2",
     "next": "16.3.4",
     "react": "19.2.8",
     "react-dom": "19.2.8"
@@ -19,6 +28,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.4",
+    "tsx": "^4.23.13",
     "typescript": "^5"
   }
 }

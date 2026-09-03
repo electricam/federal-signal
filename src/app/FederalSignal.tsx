@@ -9,6 +9,7 @@ import {
   type Candidate,
   type ScoreBreakdown,
 } from "@/data/candidates";
+import { weeklySignals, type WeeklySignal } from "@/data/weekly-signals";
 import styles from "./page.module.css";
 
 const sectors = [...new Set(candidates.map((candidate) => candidate.sector))];
@@ -22,6 +23,15 @@ function formatCurrency(amount: number) {
     notation: "compact",
     maximumFractionDigits: 1,
   }).format(amount);
+}
+
+function formatSignalDate(value: string) {
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${value}T12:00:00Z`));
 }
 
 function ArrowIcon() {
@@ -172,6 +182,45 @@ function CandidateCard({ candidate }: { candidate: Candidate }) {
   );
 }
 
+function SignalCard({ signal }: { signal: WeeklySignal }) {
+  const company = signal.companyWebsite ? (
+    <a
+      href={signal.companyWebsite}
+      target="_blank"
+      rel="noreferrer noopener"
+      aria-label={`${signal.companyName} website (opens in a new tab)`}
+    >
+      {signal.companyName} <ArrowIcon />
+    </a>
+  ) : (
+    signal.companyName
+  );
+
+  return (
+    <article className={styles.weeklyCard}>
+      <div className={styles.weeklyCardTopline}>
+        <span className={styles.agencyBadge}>{signal.agency}</span>
+        <span>{signal.kind === "sbir_award" ? "SBIR/STTR award" : "Agency announcement"}</span>
+        <time dateTime={signal.occurredAt}>{formatSignalDate(signal.occurredAt)}</time>
+      </div>
+      <h3>{company}</h3>
+      <p>{signal.sourceTitle}</p>
+      <div className={styles.weeklyFacts}>
+        <span>{signal.classification === "known_company" ? "Known candidate" : "New lead"}</span>
+        {signal.phase && <span>{signal.phase}</span>}
+        {signal.awardAmount !== null && <span>{formatCurrency(signal.awardAmount)}</span>}
+        <span>{signal.confidence} confidence</span>
+      </div>
+      <div className={styles.weeklyThemes} aria-label="Matched investment themes">
+        {signal.matchedThemes.map((theme) => <span key={theme}>{theme}</span>)}
+      </div>
+      <a className={styles.weeklySourceLink} href={signal.sourceUrl} target="_blank" rel="noreferrer noopener">
+        Open official source <ArrowIcon />
+      </a>
+    </article>
+  );
+}
+
 export default function FederalSignal() {
   const [sector, setSector] = useState("all");
   const [agency, setAgency] = useState("all");
@@ -205,6 +254,7 @@ export default function FederalSignal() {
           <strong>Federal Signal</strong>
         </a>
         <nav aria-label="Primary navigation">
+          <a href="#weekly">Weekly</a>
           <a href="#ranking">Ranking</a>
           <a href="#methodology">Methodology</a>
           <a href="#sources">Sources</a>
@@ -247,10 +297,55 @@ export default function FederalSignal() {
         </div>
       </section>
 
+      <section className={`${styles.section} ${styles.weekly}`} id="weekly">
+        <div className={styles.sectionHeading}>
+          <div>
+            <p className={styles.eyebrow}>01 · Weekly signal inbox</p>
+            <h2>What changed in the federal record.</h2>
+          </div>
+          <p>
+            A review queue from official DOD, DOE, DHS, and SBIR sources. Signals surface evidence;
+            they do not automatically change the ranked shortlist.
+          </p>
+        </div>
+
+        <div className={styles.sourceHealth} aria-label="Weekly source status">
+          {weeklySignals.sources.map((source) => (
+            <a href={source.url} target="_blank" rel="noreferrer noopener" key={source.id}>
+              <span className={`${styles.healthDot} ${styles[source.status]}`} aria-hidden="true" />
+              <strong>{source.id.toUpperCase()}</strong>
+              <small>{source.status}</small>
+            </a>
+          ))}
+          <div className={styles.refreshMeta}>
+            <span>Latest snapshot</span>
+            <strong>
+              {weeklySignals.generatedAt
+                ? formatSignalDate(weeklySignals.generatedAt.slice(0, 10))
+                : "First scan pending"}
+            </strong>
+          </div>
+        </div>
+
+        {weeklySignals.signals.length > 0 ? (
+          <div className={styles.weeklyGrid}>
+            {weeklySignals.signals.map((signal) => <SignalCard signal={signal} key={signal.stableId} />)}
+          </div>
+        ) : (
+          <div className={styles.weeklyEmpty}>
+            <span>Inbox clear</span>
+            <h3>{weeklySignals.generatedAt ? "No relevant signals in the current window." : "The first remote scan is ready to run."}</h3>
+            <p>
+              The scheduled workflow keeps raw downloads off this laptop and opens a review pull request only when the evidence changes.
+            </p>
+          </div>
+        )}
+      </section>
+
       <section className={styles.section} id="ranking">
         <div className={styles.sectionHeading}>
           <div>
-            <p className={styles.eyebrow}>01 · Ranked shortlist</p>
+            <p className={styles.eyebrow}>02 · Ranked shortlist</p>
             <h2>Five companies worth the next meeting.</h2>
           </div>
           <p>
@@ -322,7 +417,7 @@ export default function FederalSignal() {
       <section className={`${styles.section} ${styles.comparison}`}>
         <div className={styles.sectionHeading}>
           <div>
-            <p className={styles.eyebrow}>02 · Side-by-side</p>
+            <p className={styles.eyebrow}>03 · Side-by-side</p>
             <h2>The signal stack at a glance.</h2>
           </div>
           <p>Reported private funding is distinct from verified federal award dollars.</p>
@@ -363,7 +458,7 @@ export default function FederalSignal() {
       <section className={`${styles.section} ${styles.watchlist}`}>
         <div className={styles.sectionHeading}>
           <div>
-            <p className={styles.eyebrow}>03 · Watch list</p>
+            <p className={styles.eyebrow}>04 · Watch list</p>
             <h2>Near misses, with a re-entry condition.</h2>
           </div>
           <p>Alternates are useful only if we can state what evidence would change the decision.</p>
@@ -401,7 +496,7 @@ export default function FederalSignal() {
       <section className={`${styles.section} ${styles.methodology}`} id="methodology">
         <div className={styles.sectionHeading}>
           <div>
-            <p className={styles.eyebrow}>04 · Methodology</p>
+            <p className={styles.eyebrow}>05 · Methodology</p>
             <h2>A repeatable screen, not a grant leaderboard.</h2>
           </div>
           <p>Scores express sourcing priority based on public evidence; they are not investment returns or company valuations.</p>
@@ -436,7 +531,7 @@ export default function FederalSignal() {
       <section className={`${styles.section} ${styles.sources}`} id="sources">
         <div className={styles.sectionHeading}>
           <div>
-            <p className={styles.eyebrow}>05 · Source ledger</p>
+            <p className={styles.eyebrow}>06 · Source ledger</p>
             <h2>Every claim should survive a click.</h2>
           </div>
           <p>Government records anchor awards; company materials explain products; institutional sources and reporting triangulate age, team, and financing.</p>

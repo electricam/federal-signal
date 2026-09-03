@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "generatedAt": null,
+  "window": {
+    "start": null,
+    "end": null,
+    "days": 30
+  },
+  "sources": [
+    {
+      "id": "sbir",
+      "label": "SBIR/STTR bulk awards",
+      "url": "https://data.www.sbir.gov/mod_awarddatapublic_no_abstract/award_data_no_abstract.csv",
+      "status": "pending",
+      "checkedAt": null,
+      "detail": "Awaiting the first manual workflow run"
+    },
+    {
+      "id": "dod",
+      "label": "Department of War contracts",
+      "url": "https://www.war.gov/News/Contracts/",
+      "status": "pending",
+      "checkedAt": null,
+      "detail": "Awaiting the first manual workflow run"
+    },
+    {
+      "id": "doe",
+      "label": "DOE SBIR awards",
+      "url": "https://science.osti.gov/sbir/Awards",
+      "status": "pending",
+      "checkedAt": null,
+      "detail": "Awaiting the first manual workflow run"
+    },
+    {
+      "id": "dhs",
+      "label": "DHS S&T newsroom",
+      "url": "https://www.dhs.gov/science-and-technology/newsroom",
+      "status": "pending",
+      "checkedAt": null,
+      "detail": "Awaiting the first manual workflow run"
+    }
+  ],
+  "signals": []
+}
