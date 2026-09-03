@@ -2,6 +2,8 @@
 
 Federal Signal is an interview-ready venture-sourcing memo built from public federal R&D data. It screens 1,530 award records, investigates ten companies, and ranks five private, product-led startups for government validation, Microsoft relevance, venture-stage fit, technical defensibility, and founder-market fit.
 
+https://federal-signal.vercel.app/
+
 ## Shortlist
 
 | Rank | Company | Score |
