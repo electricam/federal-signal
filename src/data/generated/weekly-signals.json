@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "generatedAt": null,
+  "generatedAt": "2026-09-03T14:04:36.056Z",
   "window": {
-    "start": null,
-    "end": null,
+    "start": "2026-08-04",
+    "end": "2026-09-03",
     "days": 30
   },
   "sources": [
@@ -11,33 +11,33 @@
       "id": "sbir",
       "label": "SBIR/STTR bulk awards",
       "url": "https://data.www.sbir.gov/mod_awarddatapublic_no_abstract/award_data_no_abstract.csv",
-      "status": "pending",
-      "checkedAt": null,
-      "detail": "Awaiting the first manual workflow run"
+      "status": "healthy",
+      "checkedAt": "2026-09-03T14:04:36.056Z",
+      "detail": "219,590 award rows scanned"
     },
     {
       "id": "dod",
       "label": "Department of War contracts",
       "url": "https://www.war.gov/News/Contracts/",
-      "status": "pending",
-      "checkedAt": null,
-      "detail": "Awaiting the first manual workflow run"
+      "status": "degraded",
+      "checkedAt": "2026-09-03T14:04:36.056Z",
+      "detail": "Unable to fetch https://www.war.gov/News/Contracts/: 403 Forbidden"
     },
     {
       "id": "doe",
       "label": "DOE SBIR awards",
       "url": "https://science.osti.gov/sbir/Awards",
-      "status": "pending",
-      "checkedAt": null,
-      "detail": "Awaiting the first manual workflow run"
+      "status": "healthy",
+      "checkedAt": "2026-09-03T14:04:36.056Z",
+      "detail": "0 recent source items checked"
     },
     {
       "id": "dhs",
       "label": "DHS S&T newsroom",
       "url": "https://www.dhs.gov/science-and-technology/newsroom",
-      "status": "pending",
-      "checkedAt": null,
-      "detail": "Awaiting the first manual workflow run"
+      "status": "healthy",
+      "checkedAt": "2026-09-03T14:04:36.056Z",
+      "detail": "0 recent source items checked"
     }
   ],
   "signals": []
